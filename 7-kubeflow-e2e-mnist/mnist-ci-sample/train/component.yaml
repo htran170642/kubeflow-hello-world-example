@@ -1,0 +1,13 @@
+name: train mnist model
+description: train mnist model
+inputs:
+  - {name: path, type: string}
+outputs:
+  - {name: logdir, type: string}
+implementation:
+  container:
+    image: docker.io/170642/pytorch-mnist-train
+    command: ['python', '/mnist.py']
+    args: ['--path', {inputValue: path}]
+    fileOutputs: 
+      logdir: /logdir.txt
